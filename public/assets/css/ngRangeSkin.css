@@ -1,0 +1,96 @@
+/* Ion.RangeSlider, Nice Skin
+// css version 1.9.2
+// Â© 2013-2014 Denis Ineshin | IonDen.com
+// ===================================================================================================================*/
+
+/* =====================================================================================================================
+// Skin details */
+
+.irs-line-mid,
+.irs-line-left,
+.irs-line-right,
+.irs-diapason,
+.irs-slider {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQQAAACWCAMAAAAPDwbEAAABO1BMVEUAAACKlJuMlp3Pz8/p6enPz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/X19fb29vc3Nzs7Ozt7e3v8fLw8vPz8/P09PT39/f4+Pj5+fn8/Pz9/f3+/v7/////2tr/2Nj/19fp6enp6enp6enp6enp6enp6enp6enp6enp6enp6enp6enp6enp6enp6enp6enp6enp6enp6enp6enm5+fp6enp6enp6enp6empsLamrrS1vMG4vsO6wcefqrGfqbGeqbCeqLCdqK+cp66apayapayZpKyYo6uWoamVoKiUn6aRm6OOmJ+Nl56OmJ+Nl56Mlp2Nl56Nl56LlJuLlJv/UlL/EBD/Dg7/DQ3/DAz/AAAc27MeAAAAY3RSTlMABgYBBEJDREZHVl6HiZmaor/X2Nvc3fL0+fr//////////////////////////9TT0tHPzszKycjGxcTDwsHAv77Bsm1nZrvA4+H///////v6+vv//////////+7t7ZGQkJHGd9kAAAACD0lEQVR4Xu3ZUU/TUBiH8X9PiwBjjBEwYMfGYCJ4GJ+BkBg1A2LiDDiMRgeEj+m3MsS1x9OyOPXGmOAFnOfXpu1Vk74XJ6d55GGAgU5xqj766o8xBIaA6EClb6PMyRgT+yPSQ+byzB95rihOZnWHAAAAAAAAAABA9OXj+SBgHz4Z6fP5+7PTkJ29TEyWZ4GrHBrnKWTOZSZW6G4k8+rtu37A3rw+fBEpOXCZxqLvN6O8jNNxbPSw5FlWxmiTTE85TcTR1zt4OwAAAAAAAAAAKVJZWNkJhsAQGAKUIo0ONDEaZbnLnSQTFUxkigfdb865vPisQi6p+Kw4SfSfAAAAAAAAAACAqYXltbXlhUcKkVFhrr5aX6r7c7U+p0BVG1t2bKtRVZDm13ftT7vr8wpQpbFjf7HTqCg4cdqxv+mksUIz3bSFzd7xcW/TFprTCk2tZb32Ud87aluvVVNoVrat1+uXetbbXlFYjJLk9l5KyksS3BByp9AZjTJ5uUojeVmm0Cxu/LkwbiwqNLNNW2j3Tk56bVtozmiMzRLbZn6gglRtdOxYp1FVoCpps/Xs+e7TVjOtKFjxTO3xk9Wl2sy/rIkAAAAAVZoqTZWmSlOlqdJU6b3h5eVwL+wq3b249i66QVfp4XVpSJWmSheo0lTp/duFcT/sKt0dXl0Nu3+t0lRpqjRVmipNlaZKAwAAAD8ALze+3v31S2cAAAAASUVORK5CYII=') /*/img/sprite-skin-nice.png*/ repeat-x;
+}
+
+.irs {
+    height: 40px;
+}
+.irs-with-grid {
+    height: 60px;
+}
+.irs-line {
+    height: 8px; top: 25px;
+}
+    .irs-line-left {
+        height: 8px;
+        background-position: 0 -30px;
+    }
+    .irs-line-mid {
+        height: 8px;
+        background-position: 0 0;
+    }
+    .irs-line-right {
+        height: 8px;
+        background-position: 100% -30px;
+    }
+
+.irs-diapason {
+    height: 2px; top: 25px;
+    background-position: 0 -60px;
+}
+
+.irs-slider {
+    width: 22px; height: 22px;
+    top: 17px;
+    background-position: 0 -90px;
+}
+#irs-active-slider, .irs-slider:hover {
+    background-position: 0 -120px;
+}
+
+.irs-min, .irs-max {
+    color: #FFF;
+    font-size: 1vw; line-height: 1em;
+    text-shadow: none;
+    top: -1em;
+	text-align:center;
+	width:5em;
+	padding:.5em;
+    background: #F14C38;
+    border-radius: 3px;
+	box-shadow:2px 2px 2px 2px rgba(0,0,0,0.4);
+	-webkit-box-shadow:2px 2px 2px 2px rgba(0,0,0,0.4);
+	-moz-box-shadow:2px 2px 2px 2px rgba(0,0,0,0.4);
+}
+.lt-ie9 .irs-min, .lt-ie9 .irs-max {
+    background: #ccc;
+}
+
+.irs-from, .irs-to, .irs-single {
+    color: #fff;
+    font-size: 1vw; 
+	line-height: 2em;
+	margin-top:-3em;
+    text-shadow: none;
+    padding: 1em;
+    background: rgba(0,0,0,0.3);
+    border-radius: 3px;
+	box-shadow:2px 2px 2px 2px rgba(0,0,0,0.4);
+	-webkit-box-shadow:2px 2px 2px 2px rgba(0,0,0,0.4);
+	-moz-box-shadow:2px 2px 2px 2px rgba(0,0,0,0.4);
+}
+.lt-ie9 .irs-from, .lt-ie9 .irs-to, .lt-ie9 .irs-single {
+    background: #999;
+}
+
+.irs-grid-pol {
+    background: #99a4ac;
+}
+.irs-grid-text {
+    color: #F4F1E0;
+}
+
+.irs-disabled {
+}
