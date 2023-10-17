@@ -1,14 +1,19 @@
+import { Skill } from "@/components/ResumeBuilder/general";
 import React from "react";
-
-export default function Skills() {
+interface Props {
+  data: Skill[];
+}
+export default function Skills({ data }: Props) {
   return (
     <div className="preview-skills-list">
       <h6 className="work-main-title">skills</h6>
       <div className="preview-work-points preview-skills-points">
-        <p className="work-subtitle preview-skills-links">C++</p>
-        <p className="work-subtitle preview-skills-links">C++</p>
+        {data.map((e, i) => (
+          <p className="work-subtitle preview-skills-links" key={e.name + i}>
+            {e.name}&nbsp;
+          </p>
+        ))}
       </div>
-      W
     </div>
   );
 }

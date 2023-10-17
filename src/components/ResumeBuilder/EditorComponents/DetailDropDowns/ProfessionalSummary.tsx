@@ -1,6 +1,16 @@
 import React from "react";
-
-export default function ProfessionalSummary() {
+import { Data } from "../../general";
+interface Props {
+  data: string;
+  setData: React.Dispatch<React.SetStateAction<Data>>;
+}
+export default function ProfessionalSummary({ data, setData }: Props) {
+  function onChange(e: any) {
+    setData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  }
   return (
     <div className="accordion-item">
       <h2 className="accordion-header" id="headingfiftin">
@@ -31,7 +41,20 @@ export default function ProfessionalSummary() {
           <div className="row">
             <div className="col col-12">
               <div className="r-form-input w-100">
-                <div id="editor1"></div>
+                <div id="editor1">
+                  <div className="r-form-input right-slide-input w-100">
+                    {/* <label className="form-label">Add your Hobbies</label> */}
+                    <textarea
+                      className="form-control"
+                      cols={30}
+                      rows={5}
+                      placeholder="Things you like to do (ex- Photography, Acting, Singing)"
+                      value={data}
+                      onChange={onChange}
+                      name="professionalSummary"
+                    ></textarea>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

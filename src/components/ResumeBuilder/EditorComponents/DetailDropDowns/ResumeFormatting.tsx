@@ -1,6 +1,19 @@
 import React from "react";
-
-export default function ResumeFormatting() {
+import { Data, ResumeFormatting } from "../../general";
+interface Props {
+  data: ResumeFormatting;
+  setData: React.Dispatch<React.SetStateAction<Data>>;
+}
+export default function ResumeFormatting({ data, setData }: Props) {
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setData((prev) => ({
+      ...prev,
+      resumeFormatting: {
+        ...prev.resumeFormatting,
+        [e.target.name]: e.target.value,
+      },
+    }));
+  }
   return (
     <div className="accordion-item">
       <h2 className="accordion-header" id="headingOne">
@@ -31,14 +44,22 @@ export default function ResumeFormatting() {
                   type="email"
                   className="form-control"
                   placeholder="Choose best template"
+                  value={data.template}
+                  onChange={onChange}
+                  name="template"
                 />
               </div>
             </div>
             <div className="col col-12 col-md-6">
               <div className="r-form-input right-slide-input">
                 <label className="form-label">Resume Laguage</label>
-                <select className="form-select form-control">
-                  <option>English</option>
+                <select
+                  className="form-select form-control"
+                  value={data.language}
+                  // onChange={onChange}
+                  name="language"
+                >
+                  <option value="English">English</option>
                   <option>Swedish</option>
                 </select>
               </div>
@@ -47,9 +68,12 @@ export default function ResumeFormatting() {
               <div className="r-form-input">
                 <label className="form-label">Title Font</label>
                 <input
-                  type="email"
+                  type="text"
                   className="form-control"
                   placeholder="Lato"
+                  value={data.titleFont}
+                  onChange={onChange}
+                  name="titleFont"
                 />
               </div>
             </div>
@@ -57,9 +81,12 @@ export default function ResumeFormatting() {
               <div className="r-form-input right-slide-input">
                 <label className="form-label">Body Font</label>
                 <input
-                  type="email"
+                  type="text"
                   className="form-control"
                   placeholder="Lato"
+                  value={data.bodyFont}
+                  onChange={onChange}
+                  name="bodyFont"
                 />
               </div>
             </div>

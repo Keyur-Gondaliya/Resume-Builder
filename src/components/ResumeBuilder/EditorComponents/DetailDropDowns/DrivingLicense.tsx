@@ -1,6 +1,10 @@
 import React from "react";
-
-export default function DrivingLicense() {
+import { Data } from "../../general";
+interface Props {
+  data: string;
+  setData: React.Dispatch<React.SetStateAction<Data>>;
+}
+export default function DrivingLicense({ data, setData }: Props) {
   return (
     <div className="accordion-item">
       <h2 className="accordion-header" id="headingthirteen">

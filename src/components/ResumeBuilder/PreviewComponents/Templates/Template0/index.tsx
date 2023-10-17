@@ -9,29 +9,32 @@ import WorkExperince from "./RightColumnDetails/WorkExperince";
 import Skills from "./RightColumnDetails/Skills";
 import Referances from "./RightColumnDetails/Referances";
 import ExtraRight from "./RightColumnDetails/ExtraRight";
-
-export default function Template0() {
+import { Data } from "@/components/ResumeBuilder/general";
+interface Props {
+  data: Data;
+}
+export default function Template0({ data }: Props) {
   return (
     <div className="r-form-preview">
       <div className="preview-profile">
         <Image />
         <div className="preview-profile-body">
-          <Websites />
+          <Websites data={data.websites} />
           <h6 className="preview-main-title">
-            Dan <br /> erhard olsson
+            {data.personalInfo.firstName} <br /> {data.personalInfo.lastName}
           </h6>
-          <PersonalInfo />
-          <ProfessionalSummery />
-          <Hobbies />
-          <Extra />
+          <PersonalInfo data={data.personalInfo} />
+          <ProfessionalSummery data={data.professionalSummary} />
+          <Hobbies data={data.hobbies} />
+          {/* <Extra /> */}
         </div>
       </div>
       <div className="preview-work-details">
         <div className="preview-work-expeience">
-          <WorkExperince />
-          <Skills />
-          <Referances />
-          <ExtraRight />
+          <WorkExperince data={data.employmentHistory} />
+          <Skills data={data.skills} />
+          <Referances data={data.referance} />
+          {/* <ExtraRight /> */}
         </div>
       </div>
     </div>

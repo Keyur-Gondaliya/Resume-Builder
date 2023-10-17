@@ -1,6 +1,10 @@
 import React from "react";
-
-export default function AddExtra() {
+import { Data } from "../../general";
+interface Props {
+  data: string;
+  setData: React.Dispatch<React.SetStateAction<Data>>;
+}
+export default function AddExtra({ data, setData }: Props) {
   return (
     <div className="accordion-item pb-0">
       <h2 className="accordion-header" id="headingfourteen">

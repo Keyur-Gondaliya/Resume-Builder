@@ -1,6 +1,16 @@
 import React from "react";
-
-export default function Reference() {
+import { Data, Reference } from "../../general";
+interface Props {
+  data: Reference;
+  setData: React.Dispatch<React.SetStateAction<Data>>;
+}
+export default function Reference({ data, setData }: Props) {
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setData((prev) => ({
+      ...prev,
+      referance: { ...prev.referance, [e.target.name]: e.target.value },
+    }));
+  }
   return (
     <div className="accordion-item">
       <h2 className="accordion-header" id="headingtwelve">
@@ -31,6 +41,9 @@ export default function Reference() {
                   type="text"
                   className="form-control"
                   placeholder="Full Name of Refrence"
+                  value={data.name}
+                  onChange={onChange}
+                  name="name"
                 />
               </div>
             </div>
@@ -41,6 +54,9 @@ export default function Reference() {
                   type="text"
                   className="form-control"
                   placeholder="Company Name"
+                  value={data.company}
+                  onChange={onChange}
+                  name="company"
                 />
               </div>
             </div>
@@ -51,6 +67,9 @@ export default function Reference() {
                   type="text"
                   className="form-control"
                   placeholder="Phone Number"
+                  value={data.phone}
+                  onChange={onChange}
+                  name="phone"
                 />
               </div>
             </div>
@@ -61,6 +80,9 @@ export default function Reference() {
                   type="email"
                   className="form-control"
                   placeholder="Email Address"
+                  value={data.email}
+                  onChange={onChange}
+                  name="email"
                 />
               </div>
             </div>

@@ -14,7 +14,7 @@ type Props = {
 };
 
 function LandingPage({ name }: Props) {
-  console.log(name);
+  // console.log(name);
 
   return (
     <>
@@ -33,16 +33,17 @@ function LandingPage({ name }: Props) {
 }
 
 export default LandingPage;
-export async function getServerSideProps() {
-  const response = await axios.get(`http://localhost:3000/api/hi`, {
-    headers: {
-      // Authorization: `Bearer ${localStorage.getItem('token')}`
-    },
-  });
 
-  return {
-    props: {
-      name: response.data.name,
-    },
-  };
-}
+// export async function getServerSideProps() {
+//   const response = await axios.get(`http://localhost:3000/api/hi`, {
+//     headers: {
+//       // Authorization: `Bearer ${localStorage.getItem('token')}`
+//     },
+//   });
+
+//   return {
+//     props: {
+//       name: response.data.name,
+//     },
+//   };
+// }

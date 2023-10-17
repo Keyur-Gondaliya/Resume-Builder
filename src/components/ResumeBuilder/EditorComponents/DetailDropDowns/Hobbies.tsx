@@ -1,6 +1,10 @@
 import React from "react";
-
-export default function Hobbies() {
+import { Data } from "../../general";
+interface Props {
+  data: string;
+  setData: React.Dispatch<React.SetStateAction<Data>>;
+}
+export default function Hobbies({ data, setData }: Props) {
   return (
     <div className="accordion-item">
       <h2 className="accordion-header" id="headingeleven">
@@ -32,6 +36,10 @@ export default function Hobbies() {
                   cols={30}
                   rows={5}
                   placeholder="Things you like to do (ex- Photography, Acting, Singing)"
+                  value={data}
+                  onChange={(e) => {
+                    setData((prev) => ({ ...prev, hobbies: e.target.value }));
+                  }}
                 ></textarea>
               </div>
             </div>

@@ -1,6 +1,22 @@
-import React from "react";
-
-export default function EmploymentHistory() {
+import React, { useState } from "react";
+import { Data, EmploymentHistoryList } from "../../general";
+interface Props {
+  data: EmploymentHistoryList[];
+  setData: React.Dispatch<React.SetStateAction<Data>>;
+}
+export default function EmploymentHistory({ data, setData }: Props) {
+  const [employment, setEmployment] = useState<EmploymentHistoryList>({
+    jobTitle: "",
+    companyName: "",
+    location: "",
+    startDate: "",
+    endDate: "",
+    isStillWorking: false,
+    description: "",
+  });
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setEmployment((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
   return (
     <div className="accordion-item">
       <h2 className="accordion-header" id="headingThree">
@@ -47,19 +63,25 @@ export default function EmploymentHistory() {
               <div className="r-form-input">
                 <label className="form-label">Job Title</label>
                 <input
-                  type="email"
+                  type="text"
                   className="form-control"
                   placeholder="CEO"
+                  value={employment.jobTitle}
+                  onChange={onChange}
+                  name="jobTitle"
                 />
               </div>
             </div>
             <div className="col col-12 col-md-6">
               <div className="r-form-input right-slide-input">
-                <label className="form-label">Employer</label>
+                <label className="form-label">Company name</label>
                 <input
-                  type="email"
+                  type="text"
                   className="form-control"
                   placeholder="Sergio"
+                  value={employment.companyName}
+                  onChange={onChange}
+                  name="companyName"
                 />
               </div>
             </div>
@@ -71,6 +93,9 @@ export default function EmploymentHistory() {
                     type="time"
                     className="form-control"
                     placeholder="Jan 2017"
+                    value={employment.startDate}
+                    onChange={onChange}
+                    name="startDate"
                   />
                 </div>
                 <div className="r-form-input">
@@ -79,6 +104,9 @@ export default function EmploymentHistory() {
                     type="time"
                     className="form-control"
                     placeholder="Present"
+                    value={employment.endDate}
+                    onChange={onChange}
+                    name="endDate"
                   />
                 </div>
               </div>
@@ -87,9 +115,12 @@ export default function EmploymentHistory() {
               <div className="r-form-input right-slide-input">
                 <label className="form-label">City</label>
                 <input
-                  type="email"
+                  type="text"
                   className="form-control"
                   placeholder="Landon"
+                  value={employment.location}
+                  onChange={onChange}
+                  name="location"
                 />
               </div>
             </div>
@@ -99,7 +130,14 @@ export default function EmploymentHistory() {
                   type="checkbox"
                   className="form-check-input"
                   id="Checkwork"
-                  checked
+                  checked={employment.isStillWorking}
+                  onChange={() => {
+                    setEmployment((prev) => ({
+                      ...prev,
+                      isStillWorking: !prev.isStillWorking,
+                    }));
+                  }}
+                  name="isStillWorking"
                 />
                 <label
                   className="form-check-label form-label mb-0"
@@ -117,6 +155,14 @@ export default function EmploymentHistory() {
                   cols={30}
                   rows={7}
                   placeholder="Type something about your job profile."
+                  value={employment.description}
+                  onChange={(e) => {
+                    setEmployment((prev) => ({
+                      ...prev,
+                      description: e.target.value,
+                    }));
+                  }}
+                  name="description"
                 ></textarea>
               </div>
             </div>
@@ -131,6 +177,15 @@ export default function EmploymentHistory() {
                       data-bs-target="#collapsefour"
                       aria-expanded="false"
                       aria-controls="collapsefour"
+                      onClick={() => {
+                        setData((prev) => ({
+                          ...prev,
+                          employmentHistory: [
+                            ...prev.employmentHistory,
+                            employment,
+                          ],
+                        }));
+                      }}
                     >
                       Add Employment
                     </button>

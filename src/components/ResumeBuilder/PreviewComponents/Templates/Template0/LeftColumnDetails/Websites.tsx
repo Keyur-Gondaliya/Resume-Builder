@@ -1,6 +1,9 @@
+import { Website } from "@/components/ResumeBuilder/general";
 import React from "react";
-
-export default function Websites() {
+interface Props {
+  data: Website[];
+}
+export default function Websites({ data }: Props) {
   return (
     <ul className="preview-social-list">
       <li className="preview-social-item">

@@ -1,14 +1,12 @@
 import React from "react";
-
-export default function Hobbies() {
+interface Props {
+  data: string;
+}
+export default function Hobbies({ data }: Props) {
   return (
     <div className="preview-contact">
       <h6 className="preview-contact-title preview-title">Hobbies</h6>
-      <p className="preview-discription">
-        Auctor interdum parturient suspend isse magna facilisis. Amet, interdum
-        suspendisse{" "}
-      </p>
-      p
+      <p className="preview-discription">{data}</p>
     </div>
   );
 }

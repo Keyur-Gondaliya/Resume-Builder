@@ -1,6 +1,17 @@
-import React from "react";
-
-export default function Skills() {
+import React, { useState } from "react";
+import { Data, Skill } from "../../general";
+interface Props {
+  data: Skill[];
+  setData: React.Dispatch<React.SetStateAction<Data>>;
+}
+export default function Skills({ data, setData }: Props) {
+  const [skill, setSkill] = useState<Skill>({
+    name: "",
+    rating: 5,
+  });
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setSkill((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
   return (
     <div className="accordion-item">
       <h2 className="accordion-header" id="headingnine">
@@ -31,6 +42,9 @@ export default function Skills() {
                   type="text"
                   className="form-control"
                   placeholder="Team work"
+                  value={skill.name}
+                  onChange={onChange}
+                  name="name"
                 />
               </div>
             </div>
@@ -48,6 +62,9 @@ export default function Skills() {
                       model-from="priceFrom"
                       model-to="priceTo"
                       range-options="rangeOptions"
+                      value={skill.rating}
+                      onChange={onChange}
+                      name="rating"
                     />
                     <span className="r-form-skills-points"></span>
                   </div>
@@ -65,6 +82,12 @@ export default function Skills() {
                       data-bs-target="#collapseten"
                       aria-expanded="false"
                       aria-controls="collapseten"
+                      onClick={() => {
+                        setData((prev) => ({
+                          ...prev,
+                          skills: [...prev.skills, skill],
+                        }));
+                      }}
                     >
                       Add Skill
                     </button>

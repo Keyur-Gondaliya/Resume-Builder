@@ -11,23 +11,34 @@ import Reference from "./DetailDropDowns/Reference";
 import Hobbies from "./DetailDropDowns/Hobbies";
 import DrivingLicense from "./DetailDropDowns/DrivingLicense";
 import AddExtra from "./DetailDropDowns/AddExtra";
-
-export default function EditorComponents() {
+import { Data } from "../general";
+interface Props {
+  data: Data;
+  setData: React.Dispatch<React.SetStateAction<Data>>;
+}
+export default function EditorComponents({ data, setData }: Props) {
   return (
     <>
-      <Header />
+      <Header
+        title={data.header.title}
+        score={data.header.score}
+        setData={setData}
+      />
       <div className="accordion" id="accordionExample">
-        <ResumeFormatting />
-        <PersonalInfo />
-        <ProfessionalSummary />
-        <EmploymentHistory />
-        <Education />
-        <Websites />
-        <Skills />
-        <Hobbies />
-        <Reference />
-        <DrivingLicense />
-        <AddExtra />
+        <ResumeFormatting data={data.resumeFormatting} setData={setData} />
+        <PersonalInfo data={data.personalInfo} setData={setData} />
+        <ProfessionalSummary
+          data={data.professionalSummary}
+          setData={setData}
+        />
+        <EmploymentHistory data={data.employmentHistory} setData={setData} />
+        <Education data={data.educationHistory} setData={setData} />
+        <Websites data={data.websites} setData={setData} />
+        <Skills data={data.skills} setData={setData} />
+        <Hobbies data={data.hobbies} setData={setData} />
+        <Reference data={data.referance} setData={setData} />
+        {/* <DrivingLicense /> */}
+        {/* <AddExtra /> */}
       </div>
     </>
   );

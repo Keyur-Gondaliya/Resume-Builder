@@ -1,6 +1,17 @@
-import React from "react";
-
-export default function Websites() {
+import React, { useState } from "react";
+import { Data, Website } from "../../general";
+interface Props {
+  data: Website[];
+  setData: React.Dispatch<React.SetStateAction<Data>>;
+}
+export default function Websites({ data, setData }: Props) {
+  const [website, setWebsite] = useState<Website>({
+    label: "",
+    link: "",
+  });
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setWebsite((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
   return (
     <div className="accordion-item">
       <h2 className="accordion-header" id="headingseven">
@@ -31,6 +42,9 @@ export default function Websites() {
                   type="text"
                   className="form-control"
                   placeholder="Add your Label"
+                  value={website.label}
+                  onChange={onChange}
+                  name="label"
                 />
               </div>
             </div>
@@ -38,9 +52,12 @@ export default function Websites() {
               <div className="r-form-input right-slide-input">
                 <label className="form-label">Link</label>
                 <input
-                  type="text"
+                  type="url"
                   className="form-control"
-                  placeholder="Add Custom Link"
+                  placeholder="https://www.google.com/"
+                  value={website.link}
+                  onChange={onChange}
+                  name="link"
                 />
               </div>
             </div>
@@ -55,6 +72,12 @@ export default function Websites() {
                       data-bs-target="#collapseeight"
                       aria-expanded="false"
                       aria-controls="collapseeight"
+                      onClick={() => {
+                        setData((prev) => ({
+                          ...prev,
+                          websites: [...prev.websites, website],
+                        }));
+                      }}
                     >
                       Add Links
                     </button>
