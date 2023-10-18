@@ -114,6 +114,7 @@ export default function Education({ data, setData }: Props) {
                   value={education.endDate}
                   onChange={onChange}
                   name="endDate"
+                  disabled={education.isStillStudying}
                 />
               </div>
             </div>
@@ -127,6 +128,7 @@ export default function Education({ data, setData }: Props) {
                   onChange={() => {
                     setEducation((prev) => ({
                       ...prev,
+                      endDate: "",
                       isStillStudying: !prev.isStillStudying,
                     }));
                   }}
@@ -178,6 +180,14 @@ export default function Education({ data, setData }: Props) {
                             education,
                           ],
                         }));
+                        setEducation({
+                          schoolName: "",
+                          location: "",
+                          degree: "",
+                          startDate: "",
+                          endDate: "",
+                          isStillStudying: false,
+                        });
                       }}
                     >
                       Add Education

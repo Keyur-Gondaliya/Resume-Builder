@@ -77,6 +77,10 @@ export default function Websites({ data, setData }: Props) {
                           ...prev,
                           websites: [...prev.websites, website],
                         }));
+                        setWebsite({
+                          label: "",
+                          link: "",
+                        });
                       }}
                     >
                       Add Links

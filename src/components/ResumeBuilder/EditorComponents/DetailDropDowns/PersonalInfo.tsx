@@ -99,7 +99,7 @@ export default function PersonalInfo({ data, setData }: Props) {
                 />
               </div>
             </div>
-            <div className="col col-12 col-md-6">
+            {/* <div className="col col-12 col-md-6">
               <div className="r-form-input">
                 <label className="form-label">City</label>
                 <input
@@ -124,7 +124,7 @@ export default function PersonalInfo({ data, setData }: Props) {
                   name="postalCode"
                 />
               </div>
-            </div>
+            </div> */}
             <div className="col col-12 col-md-6">
               <div className="r-form-input">
                 <label className="form-label">Mobile no</label>

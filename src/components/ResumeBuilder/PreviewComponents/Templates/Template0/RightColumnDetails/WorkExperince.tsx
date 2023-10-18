@@ -1,4 +1,7 @@
-import { EmploymentHistoryList } from "@/components/ResumeBuilder/general";
+import {
+  EmploymentHistoryList,
+  formatDate,
+} from "@/components/ResumeBuilder/general";
 import React from "react";
 interface Props {
   data: EmploymentHistoryList[];
@@ -14,7 +17,8 @@ export default function WorkExperince({ data }: Props) {
           </p>
           <p className="work-subtitle">{e.jobTitle}</p>
           <p className="work-date">
-            {e.startDate} - {e.isStillWorking ? "Present" : e.endDate}
+            {formatDate(e.startDate).slice(3)} -{" "}
+            {e.isStillWorking ? "Present" : formatDate(e.endDate).slice(3)}
           </p>
           <p className="work-discription">{e.description}</p>
         </div>

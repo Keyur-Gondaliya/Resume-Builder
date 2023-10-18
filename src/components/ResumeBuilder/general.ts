@@ -13,8 +13,6 @@ export interface PersonalInfo {
   firstName: string;
   lastName: string;
   address: string;
-  city: string;
-  postalCode: string;
   mobileNo: string;
   email: string;
 }
@@ -62,4 +60,7 @@ export interface Data {
   skills: Skill[];
   hobbies: string;
   referance: Reference;
+}
+export function formatDate(date: string) {
+  return date.split("-").reverse().join("-");
 }

@@ -87,6 +87,10 @@ export default function Skills({ data, setData }: Props) {
                           ...prev,
                           skills: [...prev.skills, skill],
                         }));
+                        setSkill({
+                          name: "",
+                          rating: 5,
+                        });
                       }}
                     >
                       Add Skill

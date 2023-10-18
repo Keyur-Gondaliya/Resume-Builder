@@ -23,7 +23,7 @@ export default function Reference({ data, setData }: Props) {
           aria-controls="collapsetwelve"
         >
           <img src="assets/image/plus.png" alt="" className="img-fluid" />
-          Refrences
+          Refrence
         </button>
       </h2>
       <div

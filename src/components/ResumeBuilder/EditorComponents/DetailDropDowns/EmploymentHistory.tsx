@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Data, EmploymentHistoryList } from "../../general";
+import { Data, EmploymentHistoryList, formatDate } from "../../general";
 interface Props {
   data: EmploymentHistoryList[];
   setData: React.Dispatch<React.SetStateAction<Data>>;
@@ -17,6 +17,7 @@ export default function EmploymentHistory({ data, setData }: Props) {
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     setEmployment((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
+
   return (
     <div className="accordion-item">
       <h2 className="accordion-header" id="headingThree">
@@ -39,25 +40,39 @@ export default function EmploymentHistory({ data, setData }: Props) {
         data-bs-parent="#accordionExample"
       >
         <div className="accordion-body">
-          <div className="r-form-history">
-            <h6>Sergio Johndon, Jan 2017 - present</h6>
-            <p className="m-0">
-              <a href="#" className="text-decoration-none me-3">
-                <img
-                  src="assets/image/trash.png"
-                  alt=""
-                  className="img-fluid"
-                />
-              </a>
-              <a href="#" className="text-decoration-none">
-                <img
-                  src="assets/image/dwon_arrow.png"
-                  alt=""
-                  className="img-fluid"
-                />
-              </a>
-            </p>
-          </div>
+          {data.map((e, i) => (
+            <div className="r-form-history" key={i}>
+              <h6>
+                {e.companyName} - {e.jobTitle}, {formatDate(e.startDate)} -{" "}
+                {e.isStillWorking ? "present" : formatDate(e.endDate)}
+              </h6>
+              <p
+                className="m-0"
+                onClick={() => {
+                  setData((prev) => ({
+                    ...prev,
+                    employmentHistory: data.filter((e1, i1) => i1 !== i),
+                  }));
+                }}
+              >
+                <a className="text-decoration-none me-3">
+                  <img
+                    src="assets/image/trash.png"
+                    alt=""
+                    className="img-fluid"
+                  />
+                </a>
+                <a href="#" className="text-decoration-none">
+                  <img
+                    src="assets/image/dwon_arrow.png"
+                    alt=""
+                    className="img-fluid"
+                  />
+                </a>
+              </p>
+            </div>
+          ))}
+
           <div className="row">
             <div className="col col-12 col-md-6">
               <div className="r-form-input">
@@ -90,7 +105,7 @@ export default function EmploymentHistory({ data, setData }: Props) {
                 <div className="r-form-input">
                   <label className="form-label">Start Date</label>
                   <input
-                    type="time"
+                    type="date"
                     className="form-control"
                     placeholder="Jan 2017"
                     value={employment.startDate}
@@ -101,12 +116,13 @@ export default function EmploymentHistory({ data, setData }: Props) {
                 <div className="r-form-input">
                   <label className="form-label">End Date</label>
                   <input
-                    type="time"
+                    type="date"
                     className="form-control"
                     placeholder="Present"
                     value={employment.endDate}
                     onChange={onChange}
                     name="endDate"
+                    disabled={employment.isStillWorking}
                   />
                 </div>
               </div>
@@ -134,6 +150,7 @@ export default function EmploymentHistory({ data, setData }: Props) {
                   onChange={() => {
                     setEmployment((prev) => ({
                       ...prev,
+                      endDate: "",
                       isStillWorking: !prev.isStillWorking,
                     }));
                   }}
@@ -185,6 +202,15 @@ export default function EmploymentHistory({ data, setData }: Props) {
                             employment,
                           ],
                         }));
+                        setEmployment({
+                          jobTitle: "",
+                          companyName: "",
+                          location: "",
+                          startDate: "",
+                          endDate: "",
+                          isStillWorking: false,
+                          description: "",
+                        });
                       }}
                     >
                       Add Employment
