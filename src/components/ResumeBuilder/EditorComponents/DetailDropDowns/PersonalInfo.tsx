@@ -65,7 +65,8 @@ export default function PersonalInfo({ data, setData }: Props) {
                 <label className="form-label">First Name</label>
                 <input
                   type="text"
-                  className="form-control valid-input"
+                  className="form-control"
+                  // valid-input
                   placeholder="Your First Name"
                   value={data.firstName}
                   onChange={onChange}
@@ -144,7 +145,7 @@ export default function PersonalInfo({ data, setData }: Props) {
                 <input
                   type="email"
                   className="form-control"
-                  placeholder="sergiojohnson42@gmail.com"
+                  placeholder="example@gmail.com"
                   value={data.email}
                   onChange={onChange}
                   name="email"

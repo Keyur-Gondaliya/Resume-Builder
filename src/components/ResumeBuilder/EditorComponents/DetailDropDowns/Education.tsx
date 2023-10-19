@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Data, EducationHistory } from "../../general";
+import { Data, EducationHistory, formatDate } from "../../general";
 interface Props {
   data: EducationHistory[];
   setData: React.Dispatch<React.SetStateAction<Data>>;
@@ -38,32 +38,45 @@ export default function Education({ data, setData }: Props) {
         data-bs-parent="#accordionExample"
       >
         <div className="accordion-body">
-          <div className="r-form-history">
-            <h6>Sergio Johndon, Jan 2017 - present</h6>
-            <p className="m-0">
-              <a href="#" className="text-decoration-none me-3">
+          {data.map((e, i) => (
+            <div className="r-form-history">
+              <h6>
+                {e.schoolName}, {e.degree} {formatDate(e.startDate)} -{" "}
+                {e.isStillStudying ? "present" : formatDate(e.endDate)}
+              </h6>
+              <p className="m-0">
+                {/* <a  className="text-decoration-none me-3">
                 <img
                   src="assets/image/arrow-up.png"
                   alt=""
                   className="img-fluid"
                 />
-              </a>
-              <a href="#" className="text-decoration-none me-3">
-                <img
-                  src="assets/image/trash.png"
-                  alt=""
-                  className="img-fluid"
-                />
-              </a>
-              <a href="#" className="text-decoration-none">
-                <img
-                  src="assets/image/dwon_arrow.png"
-                  alt=""
-                  className="img-fluid"
-                />
-              </a>
-            </p>
-          </div>
+              </a> */}
+                <a
+                  className="text-decoration-none me-3 cp"
+                  onClick={() => {
+                    setData((prev) => ({
+                      ...prev,
+                      educationHistory: data.filter((e1, i1) => i1 !== i),
+                    }));
+                  }}
+                >
+                  <img
+                    src="assets/image/trash.png"
+                    alt=""
+                    className="img-fluid"
+                  />
+                </a>
+                <a className="text-decoration-none cp">
+                  <img
+                    src="assets/image/dwon_arrow.png "
+                    alt=""
+                    className="img-fluid"
+                  />
+                </a>
+              </p>
+            </div>
+          ))}
           <div className="row">
             <div className="col col-12 col-md-6">
               <div className="r-form-input">
@@ -71,7 +84,7 @@ export default function Education({ data, setData }: Props) {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Okland High"
+                  placeholder="Greenwood High International School"
                   value={education.schoolName}
                   onChange={onChange}
                   name="schoolName"
@@ -84,7 +97,7 @@ export default function Education({ data, setData }: Props) {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="BA"
+                  placeholder="ICSE"
                   value={education.degree}
                   onChange={onChange}
                   name="degree"
@@ -101,6 +114,7 @@ export default function Education({ data, setData }: Props) {
                   value={education.startDate}
                   onChange={onChange}
                   name="startDate"
+                  max={new Date().toJSON().slice(0, 10)}
                 />
               </div>
             </div>
@@ -115,6 +129,7 @@ export default function Education({ data, setData }: Props) {
                   onChange={onChange}
                   name="endDate"
                   disabled={education.isStillStudying}
+                  max={new Date().toJSON().slice(0, 10)}
                 />
               </div>
             </div>
@@ -148,19 +163,19 @@ export default function Education({ data, setData }: Props) {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="London"
+                  placeholder="Bangalore"
                   value={education.location}
                   onChange={onChange}
                   name="location"
                 />
               </div>
             </div>
-            <div className="col col-12">
+            {/* <div className="col col-12">
               <div className="r-form-input w-100">
                 <label className="form-label">Description</label>
                 <div id="editor2"></div>
               </div>
-            </div>
+            </div> */}
             <div className="col col-12">
               <div className="accordion add-employ" id="accordionadd1">
                 <div className="accordion-item p-0">
@@ -168,10 +183,10 @@ export default function Education({ data, setData }: Props) {
                     <button
                       className="accordion-button collapsed"
                       type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapsesix"
-                      aria-expanded="false"
-                      aria-controls="collapsesix"
+                      // data-bs-toggle="collapse"
+                      // data-bs-target="#collapsesix"
+                      // aria-expanded="false"
+                      // aria-controls="collapsesix"
                       onClick={() => {
                         setData((prev) => ({
                           ...prev,
@@ -193,14 +208,14 @@ export default function Education({ data, setData }: Props) {
                       Add Education
                     </button>
                   </h2>
-                  <div
+                  {/* <div
                     id="collapsesix"
                     className="accordion-collapse collapse"
                     aria-labelledby="headingsix"
                     data-bs-parent="#accordionadd1"
                   >
                     <div className="accordion-body">hjvfvmvdhgvcfdgf</div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

@@ -17,7 +17,7 @@ function ResumeBuilder({}: Props) {
     resumeFormatting: {
       language: "English",
       bodyFont: "Aria",
-      titleFont: "Arial Bold",
+      titleFont: "Arial",
       template: "template0",
     },
     personalInfo: {
@@ -25,42 +25,15 @@ function ResumeBuilder({}: Props) {
       firstName: "",
       lastName: "",
       address: "",
-      city: "",
-      postalCode: "",
       mobileNo: "",
       email: "",
+      image: "",
     },
     professionalSummary: "",
-    employmentHistory: [
-      // {
-      //   jobTitle: "",
-      //   companyName: "",
-      //   location: "",
-      //   startDate: "",
-      //   endDate: "",
-      //   isStillWorking: false,
-      //   description: "",
-      // },
-    ],
-    educationHistory: [
-      // {
-      //   schoolName: "",
-      //   location: "",
-      //   degree: "",
-      //   startDate: "",
-      //   endDate: "",
-      //   isStillStudying: false,
-      // },
-    ],
-    websites: [
-      // { label: "", link: "" }
-    ],
-    skills: [
-      // {
-      //   name: "",
-      //   rating: 5,
-      // },
-    ],
+    employmentHistory: [],
+    educationHistory: [],
+    websites: [],
+    skills: [],
     hobbies: "",
     referance: {
       name: "",

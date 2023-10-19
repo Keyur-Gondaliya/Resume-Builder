@@ -15,6 +15,7 @@ export interface PersonalInfo {
   address: string;
   mobileNo: string;
   email: string;
+  image: string;
 }
 export interface EmploymentHistoryList {
   jobTitle: string;
@@ -40,7 +41,7 @@ export interface Website {
 
 export interface Skill {
   name: string;
-  rating: number;
+  // rating: number;
 }
 export interface Reference {
   name: string;

@@ -46,23 +46,21 @@ export default function EmploymentHistory({ data, setData }: Props) {
                 {e.companyName} - {e.jobTitle}, {formatDate(e.startDate)} -{" "}
                 {e.isStillWorking ? "present" : formatDate(e.endDate)}
               </h6>
-              <p
-                className="m-0"
-                onClick={() => {
-                  setData((prev) => ({
-                    ...prev,
-                    employmentHistory: data.filter((e1, i1) => i1 !== i),
-                  }));
-                }}
-              >
-                <a className="text-decoration-none me-3">
+              <p className="m-0">
+                <a className="text-decoration-none me-3 cp">
                   <img
                     src="assets/image/trash.png"
                     alt=""
                     className="img-fluid"
+                    onClick={() => {
+                      setData((prev) => ({
+                        ...prev,
+                        employmentHistory: data.filter((e1, i1) => i1 !== i),
+                      }));
+                    }}
                   />
                 </a>
-                <a href="#" className="text-decoration-none">
+                <a className="text-decoration-none cp">
                   <img
                     src="assets/image/dwon_arrow.png"
                     alt=""
@@ -80,7 +78,7 @@ export default function EmploymentHistory({ data, setData }: Props) {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="CEO"
+                  placeholder="Coordinator"
                   value={employment.jobTitle}
                   onChange={onChange}
                   name="jobTitle"
@@ -93,7 +91,7 @@ export default function EmploymentHistory({ data, setData }: Props) {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Sergio"
+                  placeholder="Google India"
                   value={employment.companyName}
                   onChange={onChange}
                   name="companyName"
@@ -111,6 +109,7 @@ export default function EmploymentHistory({ data, setData }: Props) {
                     value={employment.startDate}
                     onChange={onChange}
                     name="startDate"
+                    max={new Date().toJSON().slice(0, 10)}
                   />
                 </div>
                 <div className="r-form-input">
@@ -123,6 +122,7 @@ export default function EmploymentHistory({ data, setData }: Props) {
                     onChange={onChange}
                     name="endDate"
                     disabled={employment.isStillWorking}
+                    max={new Date().toJSON().slice(0, 10)}
                   />
                 </div>
               </div>
@@ -133,7 +133,7 @@ export default function EmploymentHistory({ data, setData }: Props) {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Landon"
+                  placeholder="Bangalore"
                   value={employment.location}
                   onChange={onChange}
                   name="location"
@@ -190,10 +190,10 @@ export default function EmploymentHistory({ data, setData }: Props) {
                     <button
                       className="accordion-button collapsed"
                       type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapsefour"
-                      aria-expanded="false"
-                      aria-controls="collapsefour"
+                      // data-bs-toggle="collapse"
+                      // data-bs-target="#collapsefour"
+                      // aria-expanded="false"
+                      // aria-controls="collapsefour"
                       onClick={() => {
                         setData((prev) => ({
                           ...prev,
@@ -216,14 +216,14 @@ export default function EmploymentHistory({ data, setData }: Props) {
                       Add Employment
                     </button>
                   </h2>
-                  <div
+                  {/* <div
                     id="collapsefour"
                     className="accordion-collapse collapse"
                     aria-labelledby="headingfour"
                     data-bs-parent="#accordionadd"
                   >
                     <div className="accordion-body"></div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

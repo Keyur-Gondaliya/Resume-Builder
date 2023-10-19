@@ -5,7 +5,7 @@ interface Props {
   setData: React.Dispatch<React.SetStateAction<Data>>;
 }
 export default function ResumeFormatting({ data, setData }: Props) {
-  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function onChange(e: React.ChangeEvent<HTMLSelectElement>) {
     setData((prev) => ({
       ...prev,
       resumeFormatting: {
@@ -40,14 +40,23 @@ export default function ResumeFormatting({ data, setData }: Props) {
             <div className="col col-12 col-md-6">
               <div className="r-form-input">
                 <label className="form-label">Template</label>
-                <input
+                <select
+                  className="form-select form-control"
+                  value={data.template}
+                  onChange={onChange}
+                  name="template"
+                  disabled
+                >
+                  <option value="Template0">Template0</option>
+                </select>
+                {/* <input
                   type="email"
                   className="form-control"
                   placeholder="Choose best template"
                   value={data.template}
                   onChange={onChange}
                   name="template"
-                />
+                /> */}
               </div>
             </div>
             <div className="col col-12 col-md-6">
@@ -56,38 +65,65 @@ export default function ResumeFormatting({ data, setData }: Props) {
                 <select
                   className="form-select form-control"
                   value={data.language}
-                  // onChange={onChange}
+                  onChange={onChange}
                   name="language"
+                  disabled
                 >
-                  <option value="English">English</option>
-                  <option>Swedish</option>
+                  <option value="English" selected>
+                    English
+                  </option>
+                  {/* <option>Swedish</option> */}
                 </select>
               </div>
             </div>
             <div className="col col-12 col-md-6">
               <div className="r-form-input">
                 <label className="form-label">Title Font</label>
-                <input
+                <select
+                  className="form-select form-control"
+                  value={data.titleFont}
+                  onChange={onChange}
+                  name="titleFont"
+                  disabled
+                >
+                  <option value="Arial">Arial</option>
+                  <option value="Avenir Next">Avenir Next</option>
+                  <option value="Calibri">Calibri</option>
+                  <option value="Cambria">Cambria</option>
+                </select>
+                {/* <input
                   type="text"
                   className="form-control"
                   placeholder="Lato"
                   value={data.titleFont}
                   onChange={onChange}
                   name="titleFont"
-                />
+                /> */}
               </div>
             </div>
             <div className="col col-12 col-md-6">
               <div className="r-form-input right-slide-input">
                 <label className="form-label">Body Font</label>
-                <input
+                <select
+                  className="form-select form-control"
+                  value={data.bodyFont}
+                  onChange={onChange}
+                  name="bodyFont"
+                  disabled
+                >
+                  <option value="Arial">Arial</option>
+                  <option value="Avenir Next">Avenir Next</option>
+                  <option value="Calibri">Calibri</option>
+                  <option value="Cambria">Cambria</option>
+                </select>
+                {/* <input
                   type="text"
                   className="form-control"
                   placeholder="Lato"
                   value={data.bodyFont}
                   onChange={onChange}
                   name="bodyFont"
-                />
+                /> */}
               </div>
             </div>
           </div>

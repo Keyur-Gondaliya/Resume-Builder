@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Data, Skill } from "../../general";
+
 interface Props {
   data: Skill[];
   setData: React.Dispatch<React.SetStateAction<Data>>;
@@ -7,7 +8,6 @@ interface Props {
 export default function Skills({ data, setData }: Props) {
   const [skill, setSkill] = useState<Skill>({
     name: "",
-    rating: 5,
   });
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSkill((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -34,6 +34,44 @@ export default function Skills({ data, setData }: Props) {
         data-bs-parent="#accordionExample"
       >
         <div className="accordion-body">
+          <div className="d-flex flex-wrap">
+            {data.map((e, i) => (
+              <div
+                className="r-form-history-skill"
+                style={{ width: "fit-content", margin: "5px" }}
+              >
+                <div style={{ fontSize: "1rem", marginInlineEnd: "12px" }}>
+                  {e.name}
+                </div>
+                <div className="m-0">
+                  <a
+                    className="text-decoration-none me-1 cp"
+                    onClick={() => {
+                      setData((prev) => ({
+                        ...prev,
+                        skills: data.filter((e1, i1) => i1 !== i),
+                      }));
+                    }}
+                  >
+                    <img
+                      src="assets/image/trash.png"
+                      alt=""
+                      className="img-fluid"
+                      width={17}
+                    />
+                  </a>
+                  <a className="text-decoration-none cp">
+                    <img
+                      src="assets/image/dwon_arrow.png"
+                      alt=""
+                      className="img-fluid"
+                      width={17}
+                    />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
           <div className="row">
             <div className="col col-12 col-md-6">
               <div className="r-form-input">
@@ -48,7 +86,7 @@ export default function Skills({ data, setData }: Props) {
                 />
               </div>
             </div>
-            <div className="col col-12 col-md-6">
+            {/* <div className="col col-12 col-md-6">
               <html ng-app="ranger">
                 <body ng-controller="MainCtrl">
                   <label className="form-label">
@@ -70,7 +108,7 @@ export default function Skills({ data, setData }: Props) {
                   </div>
                 </body>
               </html>
-            </div>
+            </div> */}
             <div className="col col-12">
               <div className="accordion add-employ" id="accordionadd3">
                 <div className="accordion-item p-0">
@@ -78,10 +116,10 @@ export default function Skills({ data, setData }: Props) {
                     <button
                       className="accordion-button collapsed"
                       type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseten"
-                      aria-expanded="false"
-                      aria-controls="collapseten"
+                      // data-bs-toggle="collapse"
+                      // data-bs-target="#collapseten"
+                      // aria-expanded="false"
+                      // aria-controls="collapseten"
                       onClick={() => {
                         setData((prev) => ({
                           ...prev,
@@ -89,21 +127,20 @@ export default function Skills({ data, setData }: Props) {
                         }));
                         setSkill({
                           name: "",
-                          rating: 5,
                         });
                       }}
                     >
                       Add Skill
                     </button>
                   </h2>
-                  <div
+                  {/* <div
                     id="collapseten"
                     className="accordion-collapse collapse"
                     aria-labelledby="headingten"
                     data-bs-parent="#accordionadd3"
                   >
                     <div className="accordion-body">hjvfvmvdhgvcfdgf</div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

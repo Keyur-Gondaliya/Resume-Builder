@@ -34,6 +34,38 @@ export default function Websites({ data, setData }: Props) {
         data-bs-parent="#accordionExample"
       >
         <div className="accordion-body">
+          {data.map((e, i) => (
+            <div className="r-form-history">
+              <h6>
+                {e.label} - {e.link}
+              </h6>
+              <p className="m-0">
+                <a
+                  className="text-decoration-none me-3 cp"
+                  onClick={() => {
+                    setData((prev) => ({
+                      ...prev,
+                      websites: data.filter((e1, i1) => i1 !== i),
+                    }));
+                  }}
+                >
+                  <img
+                    src="assets/image/trash.png"
+                    alt=""
+                    className="img-fluid"
+                  />
+                </a>
+                <a className="text-decoration-none cp">
+                  <img
+                    src="assets/image/dwon_arrow.png"
+                    alt=""
+                    className="img-fluid"
+                  />
+                </a>
+              </p>
+            </div>
+          ))}
+
           <div className="row">
             <div className="col col-12 col-md-6">
               <div className="r-form-input">
@@ -68,10 +100,10 @@ export default function Websites({ data, setData }: Props) {
                     <button
                       className="accordion-button collapsed"
                       type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseeight"
-                      aria-expanded="false"
-                      aria-controls="collapseeight"
+                      // data-bs-toggle="collapse"
+                      // data-bs-target="#collapseeight"
+                      // aria-expanded="false"
+                      // aria-controls="collapseeight"
                       onClick={() => {
                         setData((prev) => ({
                           ...prev,
@@ -86,14 +118,14 @@ export default function Websites({ data, setData }: Props) {
                       Add Links
                     </button>
                   </h2>
-                  <div
+                  {/* <div
                     id="collapseeight"
                     className="accordion-collapse collapse"
                     aria-labelledby="headingeight"
                     data-bs-parent="#accordionadd2"
                   >
                     <div className="accordion-body">hjvfvmvdhgvcfdgf</div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
