@@ -5,7 +5,12 @@ var schema = new mongoose.Schema(
     email: String,
     password: String,
     otp: String,
-    resumeList: [Object],
+    resumeList: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "resume",
+      },
+    ],
   },
   { timestamps: true }
 );
