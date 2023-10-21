@@ -9,26 +9,26 @@ import db from "./models";
 import userRoutes from "./routes/auth.routes";
 import historyRoutes from "./routes/resume.routes";
 import mongoose from "mongoose";
+import logger from "morgan";
 
 const server = createServer(app);
 
-var corsOptions = {
-  origin: "*",
-  allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept"],
-};
-
 app.use(cors());
-
 app.use(express.static("public"));
 app.use(bodyParser.json());
-
+app.use(logger("dev"));
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 if (db.url) {
   mongoose
     .connect(db.url)
     .then(() => {
       console.log("Connected to the database!");
     })
-    .catch((err) => {
+    .catch((err: any) => {
       console.log("Cannot connect to the database!", err);
       process.exit();
     });

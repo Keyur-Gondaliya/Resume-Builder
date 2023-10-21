@@ -15,7 +15,7 @@ const getHistory = async (req: Request, res: Response) => {
     const newUser = new User({ username, password });
     await newUser.save();
     // const token = jwt.sign({ id: newUser._id }, SECRET, { expiresIn: '1h' });
-    res.json({ message: "User created successfully", a: 1234 });
+    res.json({ message: "User created successfully" });
   }
 };
 const addToHistory = async (req: Request, res: Response) => {
@@ -27,7 +27,7 @@ const addToHistory = async (req: Request, res: Response) => {
     const newUser = new User({ username, password });
     await newUser.save();
     // const token = jwt.sign({ id: newUser._id }, SECRET, { expiresIn: '1h' });
-    res.json({ message: "User created successfully", a: 1234 });
+    res.json({ message: "User created successfully" });
   }
 };
 const generatePdf = async (req: Request, res: Response) => {
@@ -39,7 +39,7 @@ const generatePdf = async (req: Request, res: Response) => {
     const newUser = new User({ username, password });
     await newUser.save();
     // const token = jwt.sign({ id: newUser._id }, SECRET, { expiresIn: '1h' });
-    res.json({ message: "User created successfully", a: 1234 });
+    res.json({ message: "User created successfully" });
   }
 };
 const updateResumeById = async (req: Request, res: Response) => {
@@ -51,7 +51,7 @@ const updateResumeById = async (req: Request, res: Response) => {
     const newUser = new User({ username, password });
     await newUser.save();
     // const token = jwt.sign({ id: newUser._id }, SECRET, { expiresIn: '1h' });
-    res.json({ message: "User created successfully", a: 1234 });
+    res.json({ message: "User created successfully" });
   }
 };
 const uploadImage = async (req: Request, res: Response) => {
@@ -63,7 +63,7 @@ const uploadImage = async (req: Request, res: Response) => {
     const newUser = new User({ username, password });
     await newUser.save();
     // const token = jwt.sign({ id: newUser._id }, SECRET, { expiresIn: '1h' });
-    res.json({ message: "User created successfully", a: 1234 });
+    res.json({ message: "User created successfully" });
   }
 };
 export { getHistory, addToHistory, generatePdf, updateResumeById, uploadImage };
