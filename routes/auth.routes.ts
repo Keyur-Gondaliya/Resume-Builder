@@ -29,7 +29,7 @@ router.post(
 router.get("/verifyLink", tokenValidation, verifyLink);
 router.get("/verifyEmail", tokenValidation, verifyEmail);
 router.put("/resetPassword", resetPasswordValidation, resetPassword);
-// router.get("/me", loggedIn, me);
+router.get("/me", loggedIn);
 // router.put("/me", loggedIn, updateProfile);
 // router.get("/resendVerification", loggedIn, sendAgainVerification);
 

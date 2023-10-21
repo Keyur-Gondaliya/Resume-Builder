@@ -1,10 +1,7 @@
 import db from "../models";
 import nodemailer from "nodemailer";
 import { Request, Response } from "express";
-import {
-  UserAuthInfoRequest,
-  tokenForUser,
-} from "../validations/auth.validation";
+import { tokenForUser } from "../validations/auth.validation";
 import moment from "moment";
 import bcrypt from "bcrypt-nodejs";
 
@@ -154,7 +151,9 @@ const verifyEmail = async (req: Request, res: Response) => {
   }
 };
 
-const me = async (req: UserAuthInfoRequest, res: Response) => {
+const me = async (req: any, res: Response) => {
+  console.log(req.user);
+
   if (!req.user) {
     res.status(403).json({ message: "User Does Not Exists" });
   } else {

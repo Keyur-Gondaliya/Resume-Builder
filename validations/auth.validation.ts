@@ -7,9 +7,7 @@ import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
 import * as z from "zod";
 import { UserUnathorized, ZodInputValidation } from "../utils/error";
-export interface UserAuthInfoRequest extends Request {
-  user: object;
-}
+
 const User = db.user,
   Resume = db.resume;
 
@@ -101,17 +99,14 @@ const _tokenFromRequest = (req: Request): string | null => {
   return null;
 };
 
-const loggedIn = async (
-  req: UserAuthInfoRequest,
-  res: Response,
-  next: NextFunction
-) => {
+const loggedIn = async (req: Request, res: Response, next: NextFunction) => {
   const decoded = decodeJWT(req);
   if (!decoded) return next(UserUnathorized());
 
   var user = await User.findOne({ _id: decoded, active: true });
   if (!user) return next(UserUnathorized());
-  req.user = user;
+  // req.user = user;
+
   return next();
 };
 const tokenForUser = (user: any) => {

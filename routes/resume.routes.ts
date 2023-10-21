@@ -6,12 +6,17 @@ import {
   updateResumeById,
   uploadImage,
 } from "../controllers/resume.controller";
+import {
+  addResumeValidation,
+  pdfValidation,
+  updateResumeValidation,
+} from "../validations/resume.validation";
 
 const router = express.Router();
 router.get("/", getHistory);
-router.post("/", addToHistory);
+router.post("/", addResumeValidation, addToHistory);
 router.post("/image", uploadImage);
-router.put("/id", updateResumeById);
-router.post("/pdf", generatePdf);
+router.put("/id", updateResumeValidation, updateResumeById);
+router.post("/pdf", pdfValidation, generatePdf);
 
 export default router;
