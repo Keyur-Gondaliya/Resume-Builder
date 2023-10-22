@@ -1,3 +1,5 @@
+import { AppError } from "./errorModel";
+
 export const ZodInputValidation = (error: any) => ({
   ErrorType: "Input Validation",
   ErrorData: error.issues.map((e: any) => ({
@@ -5,7 +7,11 @@ export const ZodInputValidation = (error: any) => ({
     message: e.message,
   })),
 });
-export const UserUnathorized = () => ({
-  ErrorType: "Unauthorized Access",
-  ErrorData: { message: "Invalid JWT token", code: 99 },
-});
+export const UserUnathorized = () => {
+  var error = {
+    ErrorType: "",
+    ErrorData: { message: "Invalid JWT token", code: 99 },
+  };
+
+  return new AppError("Unauthorized Access", 403, error);
+};

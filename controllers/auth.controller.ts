@@ -151,9 +151,7 @@ const verifyEmail = async (req: Request, res: Response) => {
   }
 };
 
-const me = async (req: any, res: Response) => {
-  console.log(req.user);
-
+const me = async (req: Request, res: Response) => {
   if (!req.user) {
     res.status(403).json({ message: "User Does Not Exists" });
   } else {
@@ -161,8 +159,8 @@ const me = async (req: any, res: Response) => {
   }
 };
 
-const updateProfile = async (req: Request & { _user: any }, res: Response) => {
-  const user = req._user,
+const updateProfile = async (req: Request, res: Response) => {
+  const user = req.user,
     email = req.body.email;
   if (!user) {
     res.status(403).json({ message: "User Does Not Exists" });
@@ -172,11 +170,8 @@ const updateProfile = async (req: Request & { _user: any }, res: Response) => {
     res.json({ SUCCESS });
   }
 };
-const sendAgainVerification = async (
-  req: Request & { _user: any },
-  res: Response
-) => {
-  const user = req._user;
+const sendAgainVerification = async (req: Request, res: Response) => {
+  const user = req.user;
   if (user.verified.state)
     res.status(403).json({ message: "User Already Verified." });
   if (!user) {

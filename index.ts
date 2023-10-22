@@ -1,4 +1,4 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 const app = express();
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -41,7 +41,20 @@ app.use("/app/history", historyRoutes);
 app.get("/", async (req, res) => {
   res.json({ message: "Resume Builder Test Mode." });
 });
+// error handler
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  err.statusCode = err.statusCode || 500;
+  err.status = err.status || "error";
+  if (!err.isOperational) {
+    console.log(err);
+  }
 
+  res.status(err.statusCode).json({
+    error: err.error,
+    status: err.status,
+    message: err.message,
+  });
+});
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {

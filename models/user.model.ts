@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Date } from "mongoose";
 
 var schema = new mongoose.Schema(
   {

@@ -76,7 +76,7 @@ const resetPasswordValidation = async (
     return res.status(400).json(ZodInputValidation(error));
   }
 };
-const decodeJWT = (req: Request) => {
+const decodeJWT = (req: Request): any => {
   const token = _tokenFromRequest(req);
   if (!token) return null;
 
@@ -100,14 +100,16 @@ const _tokenFromRequest = (req: Request): string | null => {
 };
 
 const loggedIn = async (req: Request, res: Response, next: NextFunction) => {
-  const decoded = decodeJWT(req);
-  if (!decoded) return next(UserUnathorized());
-
-  var user = await User.findOne({ _id: decoded, active: true });
-  if (!user) return next(UserUnathorized());
-  // req.user = user;
-
-  return next();
+  try {
+    const decoded = decodeJWT(req);
+    if (!decoded) return next(UserUnathorized());
+    var user = await User.findOne({ _id: decoded.user._id });
+    if (!user) return next(UserUnathorized());
+    req.user = user;
+    return next();
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };
 const tokenForUser = (user: any) => {
   const payload = {

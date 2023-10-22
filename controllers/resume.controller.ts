@@ -11,17 +11,22 @@ const Resume = db.resume;
 
 const getHistory = async (req: Request, res: Response) => {
   try {
-    const resumeList = await Resume.find();
-    res.json(resumeList);
+    const resumeListData = await Resume.find({
+      _id: { $in: req.user.resumeList },
+    });
+    res.json(resumeListData);
   } catch (error) {
     res.status(400).json({ message: "Something Went wrong", error });
   }
 };
 const addToHistory = async (req: Request, res: Response) => {
   try {
+    const { user } = req;
     const { name, score, data } = req.body;
     const newResume = new Resume({ name, score, data });
     await newResume.save();
+    user.resumeList.push(newResume._id);
+    user.save();
     res.json({ SUCCESS });
   } catch (error) {
     res.status(400).json({ message: "Something Went wrong", error });
@@ -78,7 +83,6 @@ const generatePdf = async (req: Request, res: Response) => {
     });
     res.status(200).send({
       message: "Pdf Created SUccessfully",
-      success: true,
       data: `${process.env.MAIN_URL}uploads/PDF/${id}.pdf`,
     });
     // Close the browser instance
@@ -131,19 +135,16 @@ const uploadImage = async (req: Request, res: Response) => {
   uploaFile(req, res, async (err) => {
     if (!req.file) {
       res.status(400).send({
-        success: false,
         data: null,
         message: "Select Image Only with max size of 2MB.",
       });
     } else if (err) {
       res.status(400).send({
-        success: false,
         data: null,
         message: "image not upload",
       });
     } else {
       res.status(200).send({
-        success: true,
         data: {
           filepath_url: req.file.filename,
           url:

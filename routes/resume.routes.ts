@@ -11,12 +11,13 @@ import {
   pdfValidation,
   updateResumeValidation,
 } from "../validations/resume.validation";
+import { loggedIn } from "../validations/auth.validation";
 
 const router = express.Router();
-router.get("/", getHistory);
-router.post("/", addResumeValidation, addToHistory);
-router.post("/image", uploadImage);
-router.put("/id", updateResumeValidation, updateResumeById);
-router.post("/pdf", pdfValidation, generatePdf);
+router.get("/", loggedIn, getHistory);
+router.post("/", loggedIn, addResumeValidation, addToHistory);
+router.post("/image", loggedIn, uploadImage);
+router.put("/id", loggedIn, updateResumeValidation, updateResumeById);
+router.post("/pdf", loggedIn, pdfValidation, generatePdf);
 
 export default router;
