@@ -35,6 +35,7 @@ const addToHistory = async (req: Request, res: Response) => {
 const generatePdf = async (req: Request, res: Response) => {
   let { html, id } = req.body,
     url: string = process.env.MAIN_URL || "";
+
   try {
     // Create a browser instance
     // Regular expression to extract src attributes from img tags
@@ -72,12 +73,14 @@ const generatePdf = async (req: Request, res: Response) => {
     await page.setContent(html, {
       waitUntil: "domcontentloaded",
     });
+    // await page.addStyleTag({ path: "public/preview.css" });
 
     // To reflect CSS used for screens instead of print
     await page.emulateMediaType("screen");
+
     // Downlaod the PDF
     await page.pdf({
-      margin: { top: "2px", bottom: "1px" },
+      margin: { top: 0, bottom: 0, left: 0, right: 0 },
       path: `public/uploads/PDF/${id}.pdf`,
       format: "A4",
     });

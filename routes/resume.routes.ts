@@ -16,8 +16,8 @@ import { loggedIn } from "../validations/auth.validation";
 const router = express.Router();
 router.get("/", loggedIn, getHistory);
 router.post("/", loggedIn, addResumeValidation, addToHistory);
-router.post("/image", loggedIn, uploadImage);
+router.post("/image", uploadImage);
 router.put("/id", loggedIn, updateResumeValidation, updateResumeById);
-router.post("/pdf", loggedIn, pdfValidation, generatePdf);
+router.post("/pdf", pdfValidation, generatePdf);
 
 export default router;
