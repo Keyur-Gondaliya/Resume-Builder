@@ -4,11 +4,15 @@ import Actions from "@/components/ResumeBuilder/PreviewComponents/Actions";
 import Template0 from "@/components/ResumeBuilder/PreviewComponents/Templates/Template0";
 import { Data } from "@/components/ResumeBuilder/general";
 import Header from "@/includes/Header";
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React, { useRef, useState } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 type Props = {};
 
 function ResumeBuilder({}: Props) {
+  const router = useRouter();
+
   const [data, setData] = useState<Data>({
     header: {
       title: "Untitle",
@@ -18,7 +22,7 @@ function ResumeBuilder({}: Props) {
       language: "English",
       bodyFont: "Aria",
       titleFont: "Arial",
-      template: "template0",
+      template: String(router.query.template),
     },
     personalInfo: {
       jobTitle: "",
@@ -41,32 +45,39 @@ function ResumeBuilder({}: Props) {
       email: "",
       phone: "",
     },
+    projects: [],
   });
-  console.log(data);
+  const ref = useRef<any>();
+  const queryClient = new QueryClient();
 
   return (
     <>
-      <Header />
-      <section className="r-form-section">
-        <div className="r-form-content">
-          <div className="row m-0">
-            <div className="col col-12 col-md-12 col-lg-6 col-xl-7 p-0">
-              <div className="r-form-box" data-scrollbar>
-                <EditorComponents data={data} setData={setData} />
+      <QueryClientProvider client={queryClient}>
+        <Header />
+        <section className="r-form-section">
+          <div className="r-form-content">
+            <div className="row m-0">
+              <div className="col col-12 col-md-12 col-lg-6 col-xl-7 p-0">
+                <div className="r-form-box" data-scrollbar>
+                  <EditorComponents data={data} setData={setData} />
+                </div>
+              </div>
+              <div
+                className="col col-12 col-md-12 col-lg-6 col-xl-5 vh-100"
+                data-scrollbar
+              >
+                <div ref={ref}>
+                  <Template0 data={data} />
+                </div>
+
+                <Actions html={ref?.current?.innerHTML} />
               </div>
             </div>
-            <div
-              className="col col-12 col-md-12 col-lg-6 col-xl-5 vh-100"
-              data-scrollbar
-            >
-              <Template0 data={data} />
-              <Actions />
-            </div>
           </div>
-        </div>
-      </section>
-      {/* Models */}
-      <Download />
+        </section>
+        {/* Models */}
+        {/* <Download /> */}
+      </QueryClientProvider>
     </>
   );
 }

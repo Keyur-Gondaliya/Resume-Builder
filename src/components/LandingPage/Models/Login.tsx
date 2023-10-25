@@ -2,24 +2,52 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import ErrorMessage from "../../../includes/ErrorMessage";
+import { useState } from "react";
+import axiosInstance from "@/api/axiosInstance";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import Spinner from "@/includes/Spinner";
 
 const LoginFormSchema = z.object({
   email: z.string().email(),
-  password: z.string().refine((data) => data.length > 6, {
+  password: z.string().refine((data) => data.length > 5, {
     message: "Password Must Be Atlist 6 Characters.",
   }),
 });
 
 export default function Login() {
+  const [disable, setDisable] = useState(false);
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(LoginFormSchema),
   });
   function submitHandler(data: object) {
-    console.log(data);
+    setDisable(true);
+    axiosInstance
+      .post("user/login", data)
+      .then((response) => {
+        if (response.status === 200) {
+          toast.success("Check Your Mail Box.");
+          sessionStorage.setItem(
+            "RESUMEBUILDERLOGINTOKEN",
+            response.data.token
+          );
+          // window.location.reload();
+          router.push("/dashboard");
+        }
+      })
+      .catch(() => {
+        reset({ keepValues: true });
+      })
+      .finally(() => {
+        setDisable(false);
+      });
   }
   return (
     <div
@@ -88,8 +116,12 @@ export default function Login() {
               </div>
             </div>
             <div className="signup-btn">
-              <button type="submit" className="btn btn-success">
-                Login
+              <button
+                type="submit"
+                className="btn btn-success"
+                disabled={disable}
+              >
+                {disable ? <Spinner /> : "Login"}
               </button>
             </div>
           </div>

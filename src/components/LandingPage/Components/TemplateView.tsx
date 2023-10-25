@@ -1,4 +1,7 @@
+import { useRouter } from "next/router";
+
 export default function TemplateView() {
+  const router = useRouter();
   return (
     <section className="landing-section">
       <div className="container">
@@ -46,25 +49,48 @@ export default function TemplateView() {
             <div className="resume-item">
               <div className="resume-item-img">
                 <img src="assets/image/img1.png" alt="" className="img-fluid" />
-                <a className="resume-item-link">CHOOSE TEMPLATE</a>
+                <a className="resume-item-link" style={{ opacity: 0.5 }}>
+                  Will Be Live Soon
+                </a>
               </div>
             </div>
             <div className="resume-item">
               <div className="resume-item-img">
-                <img src="assets/image/img2.png" alt="" className="img-fluid" />
-                <a className="resume-item-link">CHOOSE TEMPLATE</a>
+                <img
+                  src="assets/image/img2.png"
+                  alt=""
+                  className="img-fluid"
+                  style={{
+                    height: "532px",
+                    width: "373px",
+                  }}
+                />
+                <a
+                  className="resume-item-link"
+                  style={{ cursor: "pointer" }}
+                  onClick={() =>
+                    router.push({
+                      pathname: "/resume-builder",
+                      query: { template: "Template0" }, // the data
+                    })
+                  }
+                >
+                  CHOOSE TEMPLATE
+                </a>
               </div>
             </div>
             <div className="resume-item">
               <div className="resume-item-img">
                 <img src="assets/image/img3.png" alt="" className="img-fluid" />
-                <a className="resume-item-link">CHOOSE TEMPLATE</a>
+                <a className="resume-item-link" style={{ opacity: 0.5 }}>
+                  Will Be Live Soon
+                </a>
               </div>
             </div>
           </div>
-          <div className="landing-section-button">
+          {/* <div className="landing-section-button">
             <a className="btn btn-outline-dark">More On The Way!</a>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

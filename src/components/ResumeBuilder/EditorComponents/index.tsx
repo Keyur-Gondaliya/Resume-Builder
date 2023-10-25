@@ -12,6 +12,7 @@ import Hobbies from "./DetailDropDowns/Hobbies";
 import DrivingLicense from "./DetailDropDowns/DrivingLicense";
 import AddExtra from "./DetailDropDowns/AddExtra";
 import { Data } from "../general";
+import ProjectList from "./DetailDropDowns/ProjectList";
 interface Props {
   data: Data;
   setData: React.Dispatch<React.SetStateAction<Data>>;
@@ -25,7 +26,6 @@ export default function EditorComponents({ data, setData }: Props) {
         setData={setData}
       />
       <div className="accordion" id="accordionExample">
-        <ResumeFormatting data={data.resumeFormatting} setData={setData} />
         <PersonalInfo data={data.personalInfo} setData={setData} />
         <ProfessionalSummary
           data={data.professionalSummary}
@@ -33,10 +33,13 @@ export default function EditorComponents({ data, setData }: Props) {
         />
         <EmploymentHistory data={data.employmentHistory} setData={setData} />
         <Education data={data.educationHistory} setData={setData} />
+        <ProjectList data={data.projects} setData={setData} />
         <Websites data={data.websites} setData={setData} />
         <Skills data={data.skills} setData={setData} />
         <Hobbies data={data.hobbies} setData={setData} />
         <Reference data={data.referance} setData={setData} />
+        <ResumeFormatting data={data.resumeFormatting} setData={setData} />
+
         {/* <DrivingLicense /> */}
         {/* <AddExtra /> */}
       </div>

@@ -1,24 +1,45 @@
-import React from "react";
-
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import ErrorMessage from "../../../includes/ErrorMessage";
+import axiosInstance from "@/api/axiosInstance";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import Spinner from "@/includes/Spinner";
 
 const ForgotPasswordFormSchema = z.object({
   email: z.string().email(),
 });
 
 export default function ForgotPassword() {
+  const [disable, setDisable] = useState(false);
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(ForgotPasswordFormSchema),
   });
   function submitHandler(data: object) {
-    console.log(data);
+    setDisable(true);
+    axiosInstance
+      .post("user/sendForgotPasswordLink", data)
+      .then((response) => {
+        if (response.status === 200) {
+          toast.success("Check Your Mail Box.");
+          router.push("/");
+        }
+      })
+      .catch(() => {
+        reset({ keepValues: true });
+      })
+      .finally(() => {
+        setDisable(false);
+      });
   }
   return (
     <div
@@ -61,8 +82,12 @@ export default function ForgotPassword() {
             </div>
 
             <div className="signup-btn">
-              <button type="submit" className="btn btn-success">
-                Reset
+              <button
+                type="submit"
+                className="btn btn-success"
+                disabled={disable}
+              >
+                {disable ? <Spinner /> : "Reset"}
               </button>
             </div>
           </div>

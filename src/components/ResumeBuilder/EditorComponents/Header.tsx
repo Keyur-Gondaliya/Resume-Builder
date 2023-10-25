@@ -10,7 +10,7 @@ export default function Header({ title, score, setData }: Props) {
     <div className="r-form-heading">
       <input
         type="text"
-        className="form-control w-25"
+        className="form-control w-50"
         placeholder="Add your Label"
         style={{ fontSize: "28px", backgroundColor: "white", fontWeight: 500 }}
         value={title}
@@ -21,8 +21,7 @@ export default function Header({ title, score, setData }: Props) {
           }));
         }}
       />
-      {/* <h2 className="r-form-heading-title">{title}</h2> */}
-      <div className="progress">
+      {/* <div className="progress">
         <span
           className="title timer"
           data-from="0"
@@ -34,7 +33,7 @@ export default function Header({ title, score, setData }: Props) {
         <div className="overlay"></div>
         <div className="left"></div>
         <div className="right"></div>
-      </div>
+      </div> */}
     </div>
   );
 }

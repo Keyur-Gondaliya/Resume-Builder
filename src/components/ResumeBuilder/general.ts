@@ -35,10 +35,14 @@ export interface EducationHistory {
   isStillStudying: boolean;
 }
 export interface Website {
-  label: string;
+  // label: string;
   link: string;
 }
-
+export interface Project {
+  role: string;
+  name: string;
+  description: string;
+}
 export interface Skill {
   name: string;
   // rating: number;
@@ -61,6 +65,7 @@ export interface Data {
   skills: Skill[];
   hobbies: string;
   referance: Reference;
+  projects: Project[];
 }
 export function formatDate(date: string) {
   return date.split("-").reverse().join("-");

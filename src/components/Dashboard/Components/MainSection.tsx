@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import CreatedCard from "./CreatedCard";
+import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
+import axiosInstance from "@/api/axiosInstance";
+import { useQuery } from "react-query";
 
 export default function MainSection() {
+  const router = useRouter();
+  const getHistory = async () => {
+    return (await axiosInstance.get("history")).data;
+  };
+  const { isLoading, data } = useQuery(["history"], getHistory);
+
+  if (isLoading) return <>Loading...</>;
   return (
     <section className="dashboard-section">
       <div className="container">
@@ -18,8 +29,13 @@ export default function MainSection() {
             </a>
           </div>
           <div className="row">
-            <CreatedCard url="assets/image/dashboard_cv.png" isEven={false} />
-            <CreatedCard url="assets/image/dashboard_cv_1.png" isEven={true} />
+            {data.map((e: any, i: number) => (
+              <CreatedCard
+                url="assets/image/dashboard_cv.png"
+                isEven={i % 2 !== 0}
+              />
+            ))}
+            {/* <CreatedCard url="assets/image/dashboard_cv_1.png" isEven={true} /> */}
           </div>
         </div>
       </div>
