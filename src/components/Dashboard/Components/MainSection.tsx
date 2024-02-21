@@ -33,6 +33,7 @@ export default function MainSection() {
               <CreatedCard
                 url="assets/image/dashboard_cv.png"
                 isEven={i % 2 !== 0}
+                key={i}
               />
             ))}
             {/* <CreatedCard url="assets/image/dashboard_cv_1.png" isEven={true} /> */}
